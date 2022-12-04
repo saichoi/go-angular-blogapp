@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend
+    ports:
+      - 4200:4200
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    restart: "unless-stopped"
+  backend:
+    build:
+      context: ./backend
+    container_name: backend
+    ports:
+      - 8080:8080
+    volumes:
+      - ./backend/:/app/
+    restart: "unless-stopped"
+    environment:
+      DB_ADDRESS: db
+      DATABASE: dev
+      USER: user
+      PASSWORD: pass
+    depends_on:
+      - db
+    links:
+      - db
+  db:
+    image: mariadb:10.7.4
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: Passw0rd!
+      MARIADB_DATABASE: dev
+      MARIADB_USER: user
+      MARIADB_PASSWORD: pass
+    container_name: db
+    ports:
+      - 3306:3306
+    volumes:
+      - ./db/conf.d:/etc/mysql/conf.d
+      - ./db/data:/var/lib/mysql
+      - ./db/initdb.d:/docker-entrypoint-initdb.d
