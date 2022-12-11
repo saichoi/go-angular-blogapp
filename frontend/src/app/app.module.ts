@@ -7,26 +7,28 @@ import { QuillModule } from 'ngx-quill';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './layout/header/header.component';
-import { FooterComponent } from './layout/footer/footer.component';
-import { JoinFormComponent } from './views/user/join-form/join-form.component';
-import { LoginFormComponent } from './views/user/login-form/login-form.component';
-import { UpdateFormComponent } from './views/user/update-form/update-form.component';
-import { DetailComponent } from './views/board/detail/detail.component';
-import { ListComponent } from './views/board/list/list.component';
-import { SaveFormComponent } from './views/board/save-form/save-form.component';
+import { FooterComponent } from "./layout/component/footer/footer.component";
+import { HeaderComponent } from "./layout/component/header/header.component";
+import { JoinFormComponent } from "./user/component/join-form/join-form.component";
+import { LoginFormComponent } from "./user/component/login-form/login-form.component";
+import { UpdateFormComponent } from "./user/component/update-form/update-form.component";
+import { DetailComponent } from "./board/component/detail/detail.component";
+import { SaveFormComponent } from "./board/component/save-form/save-form.component";
+import { ListComponent } from "./board/component/list/list.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     FooterComponent,
+    FooterComponent,
+    FooterComponent,
+    HeaderComponent,
     JoinFormComponent,
     LoginFormComponent,
     UpdateFormComponent,
     DetailComponent,
-    ListComponent,
-    SaveFormComponent
+    SaveFormComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,

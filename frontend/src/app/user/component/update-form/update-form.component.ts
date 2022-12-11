@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpdateFormComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    console.log("iuhiu")
+  }
 
   ngOnInit(): void {
   }
