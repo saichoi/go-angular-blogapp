@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { FormsModule } from '@angular/forms';
+import { QuillModule } from 'ngx-quill';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,7 +33,8 @@ import { SaveFormComponent } from './views/board/save-form/save-form.component';
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    AngularEditorModule
+    AngularEditorModule,
+    QuillModule
   ],
   providers: [],
   bootstrap: [AppComponent]
