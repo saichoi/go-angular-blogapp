@@ -41,6 +41,7 @@ func DBConnect() {
 		}
 
 		DB.AutoMigrate(&models.User{})
+		DB.AutoMigrate(&models.Board{})
 	})
 }
 
