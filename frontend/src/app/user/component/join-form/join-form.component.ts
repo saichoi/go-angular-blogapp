@@ -40,7 +40,7 @@ export class JoinFormComponent implements OnInit {
 
     this.userService.join(user).subscribe((v) => {
       // 회원가입에 성공하면 로그인 페이지 이동
-      this.router.navigate(['/login']);
+      this.router.navigate(['user/login']);
     })
   }
 

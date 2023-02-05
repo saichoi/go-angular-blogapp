@@ -20,6 +20,7 @@ func main() {
 	user.POST("", userController.Create)
 	user.PUT("/:id", userController.Update)
 	user.DELETE("/:id", userController.Delete)
+	user.POST("/login", userController.Login)
 
 	r.Run()
 }

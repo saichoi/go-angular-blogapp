@@ -70,3 +70,16 @@ func (u UserController) Delete(c *gin.Context) {
 		c.JSON(http.StatusNoContent, gin.H{})
 	}
 }
+
+func (u UserController) Login(c *gin.Context) {
+	user := models.User{}
+	if err := c.ShouldBindJSON(&user); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	if err := user.Login(core.DB); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	} else {
+		c.JSON(http.StatusNoContent, gin.H{})
+	}
+}

@@ -38,3 +38,7 @@ func (u *User) Update(db *gorm.DB) error {
 func (u *User) Delete(db *gorm.DB) error {
 	return db.Debug().Delete(u).Error
 }
+
+func (u *User) Login(db *gorm.DB) error {
+	return db.Debug().Where("username = ?", u.Username).Where("password = ?", u.Password).First(u).Error
+}
