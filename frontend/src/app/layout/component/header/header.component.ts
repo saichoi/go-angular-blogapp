@@ -1,5 +1,6 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import * as _ from 'lodash';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,9 @@ import * as _ from 'lodash';
 export class HeaderComponent implements OnInit, DoCheck {
   isLogin: boolean = false;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
 
@@ -20,16 +23,16 @@ export class HeaderComponent implements OnInit, DoCheck {
     // npm i lodash --save
     // npm i --save-dev @types/lodash
 
-    const username = localStorage.getItem('username');
+    const username = localStorage.getItem('id');
 
-    console.log('username: ' + username);
     if (!_.isNil(username)) {
       this.isLogin = true;
     }
   }
 
   logout():void{
-    localStorage.removeItem('username');
+    localStorage.removeItem('id');
+    this.router.navigate(['/']);
     this.isLogin = false;
   }
 }

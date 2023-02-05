@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {LoginRequestMessage} from "../../models/user";
+import {LoginRequestMessage, ResponseLogin} from "../../models/user";
 import {UserService} from "../../services/user.service";
 import {Router} from "@angular/router";
 
@@ -31,9 +31,8 @@ export class LoginFormComponent implements OnInit {
     }
 
     this.userService.login(loginData).subscribe({
-      next: (v)=>{
-        const username = loginData.username as string
-        localStorage.setItem('username', username);
+      next: (v: ResponseLogin )=>{
+        localStorage.setItem('id', String(v.id));
         this.router.navigate(['/']);
       },
       error: () => {

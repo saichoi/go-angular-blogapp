@@ -27,7 +27,7 @@ func (u UserController) Show(c *gin.Context) {
 	if err := user.FindByID(core.DB); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	} else {
-		c.JSON(http.StatusOK, gin.H{"data": user})
+		c.JSON(http.StatusOK, gin.H{"username": user.Username, "password": user.Password, "email": user.Email})
 	}
 }
 
@@ -80,6 +80,6 @@ func (u UserController) Login(c *gin.Context) {
 	if err := user.Login(core.DB); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	} else {
-		c.JSON(http.StatusNoContent, gin.H{})
+		c.JSON(http.StatusOK, gin.H{"id": user.ID})
 	}
 }
