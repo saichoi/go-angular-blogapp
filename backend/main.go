@@ -22,5 +22,9 @@ func main() {
 	user.DELETE("/:id", userController.Delete)
 	user.POST("/login", userController.Login)
 
+	boardController := controllers.BoardController{}
+	board := r.Group("board")
+	board.POST("/save", boardController.Create)
+
 	r.Run()
 }
