@@ -8,8 +8,11 @@ import {HttpClient} from "@angular/common/http";
 export class BoardService {
 
   save(data: Board) {
-    console.log('data',data)
     return this.http.post(`http://localhost:8080/board/save`, data);
+  }
+
+  getList() {
+    return this.http.get(`http://localhost:8080/board/list`);
   }
 
   constructor(private http: HttpClient) { }

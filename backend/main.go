@@ -24,6 +24,7 @@ func main() {
 
 	boardController := controllers.BoardController{}
 	board := r.Group("board")
+	board.GET("/list", boardController.Index)
 	board.POST("/save", boardController.Create)
 
 	r.Run()

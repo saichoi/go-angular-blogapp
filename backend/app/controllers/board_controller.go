@@ -9,6 +9,16 @@ import (
 
 type BoardController struct{}
 
+func (u BoardController) Index(c *gin.Context) {
+	board := models.Board{}
+
+	if result, err := board.FindAll(core.DB); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	} else {
+		c.JSON(http.StatusOK, gin.H{"data": result})
+	}
+}
+
 func (b BoardController) Create(c *gin.Context) {
 	board := models.Board{}
 	if err := c.ShouldBindJSON(&board); err != nil {
