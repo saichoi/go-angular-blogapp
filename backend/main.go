@@ -27,6 +27,7 @@ func main() {
 	board.GET("/list", boardController.Index)
 	board.GET("/detail/:id", boardController.Show)
 	board.POST("/save", boardController.Create)
+	board.DELETE("/delete/:id", boardController.Delete)
 
 	r.Run()
 }

@@ -19,5 +19,9 @@ export class BoardService {
     return this.http.get(`http://localhost:8080/board/detail/${id}`)
   }
 
+  delete(id: number) {
+    return this.http.delete(`http://localhost:8080/board/delete/${id}`)
+  }
+
   constructor(private http: HttpClient) { }
 }

@@ -12,13 +12,14 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent {
+  boardId: number;
+  userId: number;
+  writerId: any;
   boardDetail: BoardDetail = {
     title: '',
     content: '',
     username: ''
   }
-
-  userId: number | undefined;
 
   constructor(
     private boardService: BoardService,
@@ -26,15 +27,28 @@ export class DetailComponent {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    const boardId = Number(this.route.snapshot.paramMap.get('id'));
-    this.boardService.detail(boardId).subscribe({
+    this.boardId = Number(this.route.snapshot.paramMap.get('id'));
+    this.userId = Number(localStorage.getItem('id'));
+    this.boardService.detail(this.boardId).subscribe({
       next: (v) => {
         this.boardDetail.title = _.get(v, 'title');
         this.boardDetail.content = this.stripHtmlTags(String(_.get(v, 'content')));
         this.boardDetail.username = _.get(v, 'username')
+        this.writerId = _.get(v, 'userId');
       }
     });
+  }
 
+  onSubmit(): void {
+    if (!_.isEqual(this.userId, this.writerId)) {
+      alert('삭제 권한이 없습니다.');
+      return;
+    }
+
+    this.boardService.delete(this.boardId).subscribe((v) => {
+      alert('해당 게시글이 삭제되었습니다.');
+      this.router.navigate(['/']);
+    })
   }
 
   stripHtmlTags(str: string) {

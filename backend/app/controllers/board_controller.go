@@ -25,7 +25,7 @@ func (b BoardController) Show(c *gin.Context) {
 	if err := board.FindByID(core.DB); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	} else {
-		c.JSON(http.StatusOK, gin.H{"title": board.Title, "content": board.Content, "username": board.User.Username})
+		c.JSON(http.StatusOK, gin.H{"title": board.Title, "content": board.Content, "userId": board.UserID, "username": board.User.Username})
 	}
 }
 
@@ -40,5 +40,16 @@ func (b BoardController) Create(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	} else {
 		c.JSON(http.StatusOK, gin.H{"data": board})
+	}
+}
+
+func (b BoardController) Delete(c *gin.Context) {
+	board := models.Board{}
+	board.ID = core.StringToUint(c.Param("id"))
+
+	if err := board.Delete(core.DB); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	} else {
+		c.JSON(http.StatusNoContent, gin.H{})
 	}
 }
