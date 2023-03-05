@@ -43,6 +43,21 @@ func (b BoardController) Create(c *gin.Context) {
 	}
 }
 
+func (b BoardController) Update(c *gin.Context) {
+	board := models.Board{}
+	if err := c.ShouldBindJSON(&board); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	board.ID = core.StringToUint(c.Param("id"))
+
+	if err := board.Update(core.DB); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	} else {
+		c.JSON(http.StatusOK, gin.H{"data": board})
+	}
+}
+
 func (b BoardController) Delete(c *gin.Context) {
 	board := models.Board{}
 	board.ID = core.StringToUint(c.Param("id"))

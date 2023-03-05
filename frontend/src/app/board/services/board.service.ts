@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Board} from "../models/board";
+import {Board, BoardUpdate} from "../models/board";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({
@@ -8,7 +8,7 @@ import {HttpClient} from "@angular/common/http";
 export class BoardService {
 
   save(data: Board) {
-    return this.http.post(`http://localhost:8080/board/save`, data);
+    return this.http.post(`http://localhost:8080/board/saveForm`, data);
   }
 
   list() {
@@ -17,6 +17,10 @@ export class BoardService {
 
   detail(id: number) {
     return this.http.get(`http://localhost:8080/board/detail/${id}`)
+  }
+
+  update(id: number, data: BoardUpdate) {
+    return this.http.put(`http://localhost:8080/board/${id}/updateForm`, data) ;
   }
 
   delete(id: number) {

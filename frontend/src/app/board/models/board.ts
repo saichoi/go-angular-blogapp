@@ -8,3 +8,7 @@ export interface BoardDetail {
   content:  string | null | undefined;
   username: string | null | undefined;
 }
+export interface BoardUpdate {
+  title: string | null | undefined;
+  content: string | null | undefined;
+}

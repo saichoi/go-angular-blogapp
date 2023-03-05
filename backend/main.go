@@ -26,8 +26,9 @@ func main() {
 	board := r.Group("board")
 	board.GET("/list", boardController.Index)
 	board.GET("/detail/:id", boardController.Show)
-	board.POST("/save", boardController.Create)
+	board.POST("/saveForm", boardController.Create)
 	board.DELETE("/delete/:id", boardController.Delete)
+	board.PUT("/:id/updateForm", boardController.Update)
 
 	r.Run()
 }

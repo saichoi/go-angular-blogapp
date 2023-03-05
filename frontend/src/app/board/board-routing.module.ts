@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DetailComponent } from './component/detail/detail.component';
 import { ListComponent } from './component/list/list.component';
 import { SaveFormComponent } from './component/save-form/save-form.component';
+import { UpdateFormComponent } from "./component/update-form/update-form.component";
 
 const routes: Routes = [
   {
@@ -18,8 +19,12 @@ const routes: Routes = [
     component: DetailComponent,
   },
   {
-    path: 'save',
+    path: 'saveForm',
     component: SaveFormComponent,
+  },
+  {
+    path: ':id/updateForm',
+    component: UpdateFormComponent,
   }
 ];
 

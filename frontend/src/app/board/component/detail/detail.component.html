@@ -1,5 +1,5 @@
 <div class="container">
-  <a href="#" class="btn btn-warning">수정</a>
+  <a href="board/{{boardId}}/updateForm" class="btn btn-warning">수정</a>
   <form (ngSubmit)="onSubmit()" class="d-inline m-lg-2">
     <button id="btn-delete" class="btn btn-danger" type="submit">삭제</button>
   </form>
@@ -7,7 +7,7 @@
   <br /><br />
   <form>
     <div>
-      <span>글 번호 : 1</span> 작성자 : <span><i>{{boardDetail.username}}</i></span>
+      <span>글 번호 : {{boardId}}</span> 작성자 : <span><i>{{boardDetail.username}}</i></span>
     </div>
     <br />
     <div>
