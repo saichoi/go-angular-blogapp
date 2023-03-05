@@ -22,7 +22,7 @@ export class ListComponent implements OnInit {
   }
 
   bindData(): void {
-    this.boardService.getList().subscribe((v)=>{
+    this.boardService.list().subscribe((v)=>{
       _.forEach(_.get(v, 'data'), (board) => {
         this.boardList.push(board);
       })

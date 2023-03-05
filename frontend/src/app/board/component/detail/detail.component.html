@@ -5,18 +5,20 @@
   </form>
 
   <br /><br />
-  <div>
-    <span>글 번호 : 1</span> 작성자 : <span><i>홍길동 </i></span>
-  </div>
-  <br />
-  <div>
-    <h3>글 제목입니다.</h3>
-  </div>
-  <hr />
-  <div>
-    <div>글 내용입니다.</div>
-  </div>
-  <hr />
+  <form>
+    <div>
+      <span>글 번호 : 1</span> 작성자 : <span><i>{{boardDetail.username}}</i></span>
+    </div>
+    <br />
+    <div>
+      <h3>{{boardDetail.title}}</h3>
+    </div>
+    <hr />
+    <div>
+      <div>{{boardDetail.content}}</div>
+    </div>
+    <hr />
+  </form>
 
   <div class="card">
     <form>

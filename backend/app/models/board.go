@@ -1,6 +1,8 @@
 package models
 
-import "gorm.io/gorm"
+import (
+	"gorm.io/gorm"
+)
 
 type Board struct {
 	gorm.Model
@@ -8,13 +10,14 @@ type Board struct {
 	Title   string `json:"title"`
 	Content string `json:"content"`
 	UserID  int    `json:"userId"`
+	User    User
 }
 
 func (Board) TableName() string {
 	return "board"
 }
 
-func (u *Board) FindAll(db *gorm.DB) ([]Board, error) {
+func (b *Board) FindAll(db *gorm.DB) ([]Board, error) {
 	var board []Board
 	result := db.Debug().Find(&board)
 	if err := result.Error; err != nil {
@@ -23,18 +26,18 @@ func (u *Board) FindAll(db *gorm.DB) ([]Board, error) {
 	return board, nil
 }
 
-func (u *Board) FindByID(db *gorm.DB) error {
-	return db.Debug().Joins("Board").Where("user_id = ?", u.ID).First(u).Error
+func (b *Board) FindByID(db *gorm.DB) error {
+	return db.Debug().Preload("User").Where("id = ?", b.ID).First(b).Error
 }
 
-func (u *Board) Create(db *gorm.DB) error {
-	return db.Model(&Board{}).Debug().Create(u).Error
+func (b *Board) Create(db *gorm.DB) error {
+	return db.Model(&Board{}).Debug().Create(b).Error
 }
 
-func (u *Board) Update(db *gorm.DB) error {
-	return db.Model(&Board{}).Debug().Where("id = ?", u.ID).Updates(u).Error
+func (b *Board) Update(db *gorm.DB) error {
+	return db.Model(&Board{}).Debug().Where("id = ?", b.ID).Updates(b).Error
 }
 
-func (u *Board) Delete(db *gorm.DB) error {
-	return db.Debug().Delete(u).Error
+func (b *Board) Delete(db *gorm.DB) error {
+	return db.Debug().Delete(b).Error
 }

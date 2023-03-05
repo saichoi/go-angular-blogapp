@@ -11,8 +11,12 @@ export class BoardService {
     return this.http.post(`http://localhost:8080/board/save`, data);
   }
 
-  getList() {
+  list() {
     return this.http.get(`http://localhost:8080/board/list`);
+  }
+
+  detail(id: number) {
+    return this.http.get(`http://localhost:8080/board/detail/${id}`)
   }
 
   constructor(private http: HttpClient) { }

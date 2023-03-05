@@ -19,6 +19,16 @@ func (u BoardController) Index(c *gin.Context) {
 	}
 }
 
+func (b BoardController) Show(c *gin.Context) {
+	board := models.Board{}
+	board.ID = core.StringToUint(c.Param("id"))
+	if err := board.FindByID(core.DB); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	} else {
+		c.JSON(http.StatusOK, gin.H{"title": board.Title, "content": board.Content, "username": board.User.Username})
+	}
+}
+
 func (b BoardController) Create(c *gin.Context) {
 	board := models.Board{}
 	if err := c.ShouldBindJSON(&board); err != nil {
