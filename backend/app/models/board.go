@@ -19,7 +19,7 @@ func (Board) TableName() string {
 
 func (b *Board) FindAll(db *gorm.DB) ([]Board, error) {
 	var board []Board
-	result := db.Debug().Find(&board)
+	result := db.Debug().Order("created_at DESC").Find(&board)
 	if err := result.Error; err != nil {
 		return nil, err
 	}
