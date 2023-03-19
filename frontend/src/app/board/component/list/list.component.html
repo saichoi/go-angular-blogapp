@@ -1,7 +1,7 @@
 <div class="container">
 
   <!-- 카드 글 시작 -->
-  <div class="card mb-3" *ngFor="let board of boardList; let i = index">
+  <div class="card mb-3" *ngFor="let board of boardList| paginate: { itemsPerPage: 5, currentPage: currentPage }; let i = index">
     <div class="card-body">
       <!-- el표현식은 변수명을 적으면 자동으로 get함수를 호출해준다 -->
       <h4 class="card-title mb-3">{{ board.title }}</h4>
@@ -9,5 +9,7 @@
     </div>
   </div>
   <!-- 카드 글 끝 -->
-
+  <div class="pagination d-flex justify-content-center mt-5">
+    <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+  </div>
 </div>

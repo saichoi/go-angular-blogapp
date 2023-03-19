@@ -11,6 +11,7 @@ import * as _ from "lodash";
 })
 export class ListComponent implements OnInit {
   boardList: any[] = [];
+  currentPage: number = 1;
 
   constructor(
     private boardService: BoardService,

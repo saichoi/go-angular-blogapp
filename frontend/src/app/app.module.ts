@@ -16,6 +16,7 @@ import { UpdateFormComponent } from "./user/component/update-form/update-form.co
 import { DetailComponent } from "./board/component/detail/detail.component";
 import { SaveFormComponent } from "./board/component/save-form/save-form.component";
 import { ListComponent } from "./board/component/list/list.component";
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -32,14 +33,15 @@ import { ListComponent } from "./board/component/list/list.component";
     ListComponent,
   ],
     imports: [
-        BrowserModule,
-        AppRoutingModule,
-        NgbModule,
-        FormsModule,
-        AngularEditorModule,
-        QuillModule,
-        ReactiveFormsModule,
-        HttpClientModule
+      BrowserModule,
+      AppRoutingModule,
+      NgbModule,
+      FormsModule,
+      AngularEditorModule,
+      QuillModule,
+      ReactiveFormsModule,
+      HttpClientModule,
+      NgxPaginationModule
     ],
   providers: [],
   bootstrap: [AppComponent]
